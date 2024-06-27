@@ -23,8 +23,8 @@ namespace Ballbouncing
             formwidth = width;
             formheight = hight;
             frm = theform;
-            acceleration = new Vector2((float)-0.1, (float)0.1);
-            topspeed = rand.Next(8, 20);
+            acceleration = new Vector2((float)-0.001, (float)0.0001);
+            topspeed = rand.Next(8, 16);
 
 
 
@@ -88,11 +88,15 @@ namespace Ballbouncing
 
 
 
-            if (velocity.X < 1.8)
+            if (velocity.X > 2.68 && velocity.X < 7)
             {
-                e.DrawRectangle(Pens.Red, location.X, location.Y, 10, 10);
+                e.FillEllipse(Brushes.Red, location.X, location.Y, 10 , 10);
             }
-
+            if (velocity.X < 1.6 && velocity.X < 2.7)
+            {
+                e.FillEllipse(Brushes.Blue, location.X, location.Y, 20, 20);
+            }
+            
         }
 
 

@@ -39,7 +39,7 @@ namespace Ballbouncing
             this.WindowState = FormWindowState.Maximized;
 
             this.DoubleBuffered = true;
-            for (int i = 0; i < 500; i++)
+            for (int i = 0; i < 150; i++)
             {
                 mover = new Mover(this.Width, this.Height, this);
                 movers.Add(mover);
