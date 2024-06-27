@@ -32,6 +32,7 @@ namespace Ballbouncing
             components = new System.ComponentModel.Container();
             timer1 = new System.Windows.Forms.Timer(components);
             timer2 = new System.Windows.Forms.Timer(components);
+            label1 = new Label();
             SuspendLayout();
             // 
             // timer1
@@ -43,18 +44,29 @@ namespace Ballbouncing
             // timer2
             // 
             timer2.Enabled = true;
-            timer2.Tick += timer2_Tick;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(629, 68);
+            label1.Name = "label1";
+            label1.Size = new Size(38, 15);
+            label1.TabIndex = 0;
+            label1.Text = "label1";
+           
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label1);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
             Paint += Form1_Paint;
             ResumeLayout(false);
+            PerformLayout();
         }
 
 
@@ -63,5 +75,6 @@ namespace Ballbouncing
 
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
+        private Label label1;
     }
 }

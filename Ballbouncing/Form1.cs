@@ -17,14 +17,12 @@ using System.Diagnostics.Metrics;
 namespace Ballbouncing
 {
     public partial class Form1 : Form
-    { 
+    {
         Mover mover;
-        static Random r = new Random();    
+        static Random r = new Random();
         List<Mover> movers = new List<Mover>();
-        const int numberofballs = 200;
-        Color[,] grid = new Color[(int)Math.Sqrt(numberofballs), (int)Math.Sqrt(numberofballs)];
-        List<Changelisttype> changelist = new List<Changelisttype>();
-        int lastArray;
+
+
         public Form1()
         {
             InitializeComponent();
@@ -41,7 +39,7 @@ namespace Ballbouncing
             this.WindowState = FormWindowState.Maximized;
 
             this.DoubleBuffered = true;
-            for (int i = 0; i < 5000; i++)
+            for (int i = 0; i < 500; i++)
             {
                 mover = new Mover(this.Width, this.Height, this);
                 movers.Add(mover);
@@ -49,11 +47,7 @@ namespace Ballbouncing
 
 
         }
-        public void timer2_Tick(object sender, EventArgs e)
-        {
-            Color colour = Color.FromArgb(r.Next(0, 256), r.Next(0, 256), r.Next(0, 256));
 
-        }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
@@ -62,7 +56,7 @@ namespace Ballbouncing
             foreach (var item in movers)
             {
                 item.Update();
-                item.Display(e.Graphics , colo);
+                item.Display(e.Graphics);
 
             }
 
@@ -71,9 +65,10 @@ namespace Ballbouncing
         private void timer1_Tick(object sender, EventArgs e)
         {
             Invalidate();
+            
         }
-        
 
+       
     }
 }
 

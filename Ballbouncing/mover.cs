@@ -1,10 +1,10 @@
-﻿using Microsoft.VisualBasic;
-using System.Numerics;
+﻿using System.Numerics;
 
 namespace Ballbouncing
 {
     class Mover
     {
+        Vector2 distancefrommouse = new Vector2();
         Vector2 location;
         Vector2 velocity;
         Vector2 acceleration;
@@ -13,7 +13,7 @@ namespace Ballbouncing
         Form frm;
         int formwidth;
         int formheight;
-
+        float number;
         static Random r = new Random();
         static Random rand = new Random();
         public Mover(int width, int hight, Form theform)
@@ -23,8 +23,8 @@ namespace Ballbouncing
             formwidth = width;
             formheight = hight;
             frm = theform;
-            acceleration = new Vector2((float) - 0.00001 , (float) 0.000001);
-            topspeed = rand.Next(8, 20) ;
+            acceleration = new Vector2((float)-0.1, (float)0.1);
+            topspeed = rand.Next(8, 20);
 
 
 
@@ -64,29 +64,39 @@ namespace Ballbouncing
         public void Update()
         {
             Random rand = new Random();
-          
+
             Point cp = frm.PointToClient(Cursor.Position);
             mouse.X = cp.X;
             mouse.Y = cp.Y;
+
             Vector2 dir = Vector2.Subtract(mouse, location);
+            Vector2 distancefrommouse = Vector2.Subtract(mouse, location);
             dir = Vector2.Normalize(dir);
+            distancefrommouse = Vector2.Normalize(distancefrommouse);
             dir = Vector2.Multiply(rand.NextSingle(), dir);
             acceleration = dir;
             velocity = Vector2.Add(velocity, acceleration);
             velocity = Limit(topspeed, velocity);
             location = Vector2.Add(location, velocity);
+
         }
 
 
-        public void Display(Graphics e , Color colo)
+
+        public void Display(Graphics e)
         {
-        
-            using Pen pen = new Pen(colo);
-            e.DrawEllipse(pen , location.X, location.Y, 10, 10);
+
+
+
+            if (velocity.X < 1.8)
+            {
+                e.DrawRectangle(Pens.Red, location.X, location.Y, 10, 10);
+            }
+
         }
 
 
-        
+
 
 
     }
